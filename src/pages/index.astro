@@ -64,16 +64,16 @@ const latestWorks = (await getCollection('portfolio'))
   </section>
 
   <!-- ====== MARQUEE ====== -->
-  <section class="border-y border-neutral-200 py-8 overflow-hidden bg-[var(--color-paper)]">
+  <section class="border-y border-neutral-200 py-5 md:py-6 overflow-hidden bg-[var(--color-paper)]">
     <div class="marquee items-center">
-      {Array.from({ length: 6 }).map(() => (
-        <span class="flex items-center gap-12 pr-12 font-display text-3xl md:text-5xl font-medium whitespace-nowrap">
+      {Array.from({ length: 8 }).map(() => (
+        <span class="flex items-center gap-8 md:gap-12 pr-8 md:pr-12 text-xl md:text-3xl font-display whitespace-nowrap text-neutral-700">
           シナリオ制作
-          <span class="text-sky-500">✦</span>
+          <span class="font-serif-it text-sky-500 text-base md:text-xl">scenario</span>
+          <span class="w-1 h-1 rounded-full bg-neutral-300"></span>
           サークル運営補助
-          <span class="text-sky-500">✦</span>
-          確定申告補助
-          <span class="text-sky-500">✦</span>
+          <span class="font-serif-it text-sky-500 text-base md:text-xl">management</span>
+          <span class="w-1 h-1 rounded-full bg-neutral-300"></span>
         </span>
       ))}
     </div>
