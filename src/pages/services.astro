@@ -8,16 +8,16 @@ import Layout from '../layouts/Layout.astro';
   <section class="px-5 md:px-10 pt-12 md:pt-20 pb-16 md:pb-24">
     <div class="flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
       <span>— 01 / Services</span>
-      <span>3 areas</span>
+      <span>2 services + α</span>
     </div>
     <h1 class="font-display text-[15vw] md:text-[10vw] lg:text-[9rem] font-medium leading-[0.92] tracking-tight mb-8">
-      <span class="mask-reveal block"><span>サービス</span></span>
-      <span class="mask-reveal block"><span><span class="font-serif-it text-sky-500">一覧</span>。</span></span>
+      <span class="mask-reveal block"><span>提供</span></span>
+      <span class="mask-reveal block"><span><span class="font-serif-it text-sky-500">サービス</span>。</span></span>
     </h1>
     <div class="md:max-w-2xl md:ml-auto reveal reveal-d2">
       <p class="text-neutral-700 text-base md:text-lg leading-relaxed">
-        音声作品の制作現場で必要とされる業務を、3つの分野でカバーします。
-        シナリオ制作、サークル運営のサポート、個人事業主の方の確定申告補助まで。
+        音声作品の制作現場で必要とされる業務を、シナリオ制作とサークル運営サポートの2軸でカバーします。
+        ご契約者様には、確定申告補助のプラスサポートも対応可能です。
       </p>
     </div>
   </section>
@@ -97,37 +97,28 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Service 03 — Tax -->
-  <section id="tax" class="border-t border-neutral-200 px-5 md:px-10 py-20 md:py-32">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-y-8 gap-x-6">
-      <div class="md:col-span-5 reveal">
-        <span class="big-number text-6xl md:text-9xl block leading-none mb-6 text-neutral-300">03</span>
-        <h2 class="font-display text-4xl md:text-6xl font-medium leading-tight">
-          Tax<br /><span class="font-serif-it text-neutral-500">assistance</span>
+  <!-- Add-on — Tax (subdued) -->
+  <section id="tax" class="border-t border-neutral-200 px-5 md:px-10 py-16 md:py-24 bg-neutral-50">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-y-6 gap-x-6">
+      <div class="md:col-span-4 reveal">
+        <p class="font-mono text-xs uppercase tracking-widest text-neutral-400 mb-3">— Plus support / ご契約者様向け</p>
+        <h2 class="font-display text-2xl md:text-3xl font-medium leading-tight">
+          確定申告・会計補助
         </h2>
-        <p class="text-sm font-mono text-neutral-400 uppercase tracking-widest mt-6">— 確定申告・会計補助（Optional）</p>
+        <p class="text-xs text-neutral-500 mt-2">（プラスサポート）</p>
       </div>
-      <div class="md:col-span-6 md:col-start-7 reveal reveal-d1">
-        <p class="text-base md:text-lg text-neutral-700 leading-relaxed mb-2">
-          個人事業主・フリーランスの方向けに、確定申告や会計ソフトの操作補助を行います。
-          これまで50名以上の申告・ソフト設定をサポートした実績があります。
+      <div class="md:col-span-7 md:col-start-6 reveal reveal-d1">
+        <p class="text-sm md:text-base text-neutral-700 leading-relaxed mb-4">
+          運営サポートやマネジメント代行を継続してご依頼いただいているサークル様・個人声優様向けに、
+          確定申告や会計ソフト操作の補助を <strong>プラスサポート</strong> としてお引き受けしています。
         </p>
-        <p class="text-sm text-neutral-500 mb-10">
-          ※ 個人の方のみ対応。税理士による税務代理・税務代行ではありません。
+        <p class="text-xs md:text-sm text-neutral-500 leading-relaxed mb-4">
+          単発でのご依頼は原則お受けしておりません。<br />
+          信頼関係を前提とした対応とさせていただいています。
         </p>
-        <ul class="space-y-4">
-          {[
-            ['Flow', '確定申告の全体フロー説明'],
-            ['Setup', '会計ソフト（freee・マネフォ等）初期設定'],
-            ['Input', '経費・売上の入力サポート'],
-            ['Check', '申告書の確認補助'],
-          ].map(([k, v]) => (
-            <li class="flex gap-4 border-b border-neutral-200 pb-4">
-              <span class="font-mono text-xs uppercase tracking-widest text-sky-600 w-20 shrink-0">{k}</span>
-              <span class="text-sm md:text-base">{v}</span>
-            </li>
-          ))}
-        </ul>
+        <p class="text-xs text-neutral-400">
+          ※ 個人事業主の方のみ対応。税理士による税務代理・税務代行ではありません。
+        </p>
       </div>
     </div>
   </section>
