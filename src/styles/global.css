@@ -165,7 +165,16 @@ body {
   display: inline-block;
   transform: translateY(110%);
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
 }
 .mask-reveal.visible > span {
   transform: translateY(0);
+}
+
+/* Japanese text wrapping */
+.jp-balance {
+  text-wrap: pretty;
+  word-break: auto-phrase;
+  overflow-wrap: anywhere;
+  line-break: strict;
 }
