@@ -1,0 +1,115 @@
+---
+interface Props {
+  color?: string;
+  opacity?: number;
+}
+const { color = '#0ea5e9', opacity = 0.25 } = Astro.props;
+---
+
+<div class="wave-bg-container absolute inset-0 pointer-events-none overflow-hidden" data-color={color} data-opacity={opacity}>
+  <canvas class="wave-canvas w-full h-full"></canvas>
+</div>
+
+<script>
+  import * as THREE from 'three';
+
+  document.querySelectorAll('.wave-bg-container').forEach((container) => {
+    const canvas = container.querySelector('.wave-canvas') as HTMLCanvasElement;
+    if (!canvas) return;
+
+    const colorStr = (container as HTMLElement).dataset.color || '#0ea5e9';
+    const opacity = parseFloat((container as HTMLElement).dataset.opacity || '0.25');
+
+    let width = container.clientWidth;
+    let height = container.clientHeight;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+    camera.position.set(0, 2.5, 4);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height, false);
+    renderer.setClearColor(0x000000, 0);
+
+    // Wave plane
+    const geo = new THREE.PlaneGeometry(14, 8, 80, 50);
+    const baseY = geo.attributes.position.array.slice();
+    const mat = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(colorStr),
+      wireframe: true,
+      transparent: true,
+      opacity: opacity,
+    });
+    const plane = new THREE.Mesh(geo, mat);
+    plane.rotation.x = -Math.PI / 2.3;
+    scene.add(plane);
+
+    // Scroll progress
+    let scrollProgress = 0;
+    function updateScroll() {
+      const rect = (container as HTMLElement).getBoundingClientRect();
+      const vh = window.innerHeight;
+      scrollProgress = 1 - Math.max(0, Math.min(1, (rect.top + rect.height / 2) / vh));
+    }
+    window.addEventListener('scroll', updateScroll, { passive: true });
+    updateScroll();
+
+    const clock = new THREE.Clock();
+    let frame = 0;
+    let active = true;
+
+    function animate() {
+      if (!active) return;
+      const t = clock.getElapsedTime();
+      frame = requestAnimationFrame(animate);
+
+      const positions = geo.attributes.position.array as Float32Array;
+      const scrollBoost = scrollProgress * 2.5;
+      for (let i = 0; i < positions.length; i += 3) {
+        const x = baseY[i];
+        const y = baseY[i + 1];
+        const wave =
+          Math.sin(x * 0.7 + t * 0.6 + scrollBoost) * 0.4 +
+          Math.cos(y * 0.6 + t * 0.4 + scrollBoost * 0.5) * 0.3;
+        positions[i + 2] = wave;
+      }
+      geo.attributes.position.needsUpdate = true;
+
+      plane.rotation.z = scrollProgress * 0.1;
+      renderer.render(scene, camera);
+    }
+
+    function onResize() {
+      width = container.clientWidth;
+      height = container.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height, false);
+    }
+    window.addEventListener('resize', onResize);
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          active = entry.isIntersecting;
+          if (active && !frame) {
+            animate();
+          } else if (!active) {
+            cancelAnimationFrame(frame);
+            frame = 0;
+          }
+        });
+      },
+      { threshold: 0 }
+    );
+    io.observe(container);
+
+    animate();
+  });
+</script>

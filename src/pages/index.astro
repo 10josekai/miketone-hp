@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import Hero3D from '../components/Hero3D.astro';
+import WaveBackground from '../components/WaveBackground.astro';
+
 
 const latestPosts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -14,22 +17,23 @@ const latestWorks = (await getCollection('portfolio'))
 <Layout title="Index" description="miketone — 音声作品シナリオ制作・サークル運営補助・確定申告補助">
 
   <!-- ====== HERO ====== -->
-  <section class="relative px-5 md:px-10 pt-12 md:pt-24 pb-24 md:pb-32">
+  <section class="relative px-5 md:px-10 pt-12 md:pt-24 pb-24 md:pb-32 overflow-hidden">
+    <Hero3D />
     <!-- top meta line -->
-    <div class="flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
+    <div class="relative z-10 flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
       <span>— Scenario × Management × Consulting</span>
       <span class="hidden sm:inline">Tokyo / Japan</span>
     </div>
 
     <!-- Massive headline -->
-    <div class="relative">
+    <div class="relative z-10">
       <h1 class="font-display text-[16vw] md:text-[12vw] lg:text-[11rem] font-medium leading-[0.92] tracking-tight">
         <span class="mask-reveal block"><span>音 声 制 作 の、</span></span>
         <span class="mask-reveal block"><span>静かな <span class="font-serif-it text-sky-500">伴走者</span>。</span></span>
       </h1>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-12 md:mt-16">
+    <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 mt-12 md:mt-16">
       <div class="md:col-span-5 md:col-start-7 reveal reveal-d2">
         <p class="text-neutral-700 text-base md:text-lg leading-relaxed mb-8">
           DLSiteに展開する成人男性向け音声作品の <span class="font-serif-it text-sky-600">シナリオ制作</span> と、
@@ -55,7 +59,7 @@ const latestWorks = (await getCollection('portfolio'))
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-5 md:left-10 hidden md:flex items-center gap-3 text-xs font-mono text-neutral-400">
+    <div class="absolute bottom-8 left-5 md:left-10 hidden md:flex items-center gap-3 text-xs font-mono text-neutral-400 z-10">
       <span class="w-12 h-px bg-neutral-400"></span>
       <span>SCROLL</span>
     </div>
@@ -174,8 +178,9 @@ const latestWorks = (await getCollection('portfolio'))
 
   <!-- ====== STATS / NUMBERS ====== -->
   <section class="bg-[var(--color-ink)] text-[var(--color-paper)] py-24 md:py-32 px-5 md:px-10 relative overflow-hidden">
+    <WaveBackground color="#0ea5e9" opacity={0.18} />
     <div class="grain absolute inset-0"></div>
-    <div class="relative">
+    <div class="relative z-10">
       <p class="font-mono text-xs uppercase tracking-widest text-sky-400 mb-12 reveal">— Numbers</p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-6">
         <div class="reveal">

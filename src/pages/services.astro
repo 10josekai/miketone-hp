@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import WaveBackground from '../components/WaveBackground.astro';
 ---
 
 <Layout title="Services" description="miketoneのサービス — シナリオ制作・サークル運営補助・確定申告補助">
@@ -58,8 +59,9 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- Service 02 — Management (MAIN, dark) -->
   <section id="management" class="bg-[var(--color-ink)] text-[var(--color-paper)] px-5 md:px-10 py-20 md:py-32 relative overflow-hidden">
+    <WaveBackground color="#0ea5e9" opacity={0.15} />
     <div class="grain absolute inset-0"></div>
-    <div class="relative grid grid-cols-1 md:grid-cols-12 gap-y-8 gap-x-6">
+    <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-8 gap-x-6">
       <div class="md:col-span-5 reveal">
         <span class="big-number text-6xl md:text-9xl block leading-none mb-6 text-sky-400">02</span>
         <h2 class="font-display text-4xl md:text-6xl font-medium leading-tight">
