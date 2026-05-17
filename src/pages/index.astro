@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import Hero3D from '../components/Hero3D.astro';
 
 
 const latestPosts = (await getCollection('blog'))
@@ -16,21 +17,23 @@ const latestWorks = (await getCollection('portfolio'))
 
   <!-- ====== HERO ====== -->
   <section class="relative px-5 md:px-10 pt-12 md:pt-24 pb-24 md:pb-32 overflow-hidden">
+    <Hero3D />
+
     <!-- top meta line -->
-    <div class="flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
+    <div class="relative z-10 flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
       <span>— 依頼受付中</span>
       <span class="hidden sm:inline">Tokyo / Japan</span>
     </div>
 
     <!-- Massive headline -->
-    <div>
+    <div class="relative z-10">
       <h1 class="font-display text-[18vw] md:text-[14vw] lg:text-[11rem] font-medium leading-[0.92] tracking-tight">
         <span class="mask-reveal block"><span>音声作品の</span></span>
         <span class="mask-reveal block"><span><span class="font-serif-it text-sky-500">制作サポート</span></span></span>
       </h1>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-12 md:mt-16">
+    <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 mt-12 md:mt-16">
       <div class="md:col-span-5 md:col-start-7 reveal reveal-d2">
         <p class="text-neutral-700 text-base md:text-lg leading-relaxed mb-8 jp-balance">
           DLSiteで販売する成人男性向け音声作品のシナリオ制作と、サークル運営のマネジメント・連絡代行を中心に、制作の裏側をサポートしています。
@@ -54,7 +57,7 @@ const latestWorks = (await getCollection('portfolio'))
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-5 md:left-10 hidden md:flex items-center gap-3 text-xs font-mono text-neutral-400">
+    <div class="absolute bottom-8 left-5 md:left-10 hidden md:flex items-center gap-3 text-xs font-mono text-neutral-400 z-10">
       <span class="w-12 h-px bg-neutral-400"></span>
       <span>SCROLL</span>
     </div>
