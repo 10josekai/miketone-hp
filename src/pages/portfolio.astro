@@ -41,22 +41,33 @@ const works = (await getCollection('portfolio'))
           rel="noopener noreferrer"
           class={`group block border-b border-neutral-200 hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)] transition-colors duration-500 reveal reveal-d${(i % 4) + 1}`}
         >
-          <div class="px-5 md:px-10 py-8 md:py-12 grid grid-cols-12 gap-x-4 gap-y-3 items-center">
+          <div class="px-5 md:px-10 py-8 md:py-10 grid grid-cols-12 gap-x-4 gap-y-3 items-center">
             <span class="col-span-2 md:col-span-1 font-mono text-xs md:text-sm text-neutral-400 group-hover:text-sky-400 transition-colors">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <div class="col-span-10 md:col-span-6">
+            <!-- Thumbnail -->
+            <div class="col-span-3 md:col-span-2">
+              <div class="aspect-square overflow-hidden rounded-lg bg-neutral-100 group-hover:bg-neutral-800 transition-colors">
+                <img
+                  src={work.data.thumbnail}
+                  alt={work.data.title}
+                  class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="col-span-7 md:col-span-5">
               <p class="font-mono text-[10px] uppercase tracking-widest text-sky-600 group-hover:text-sky-400 transition-colors mb-2">
                 {work.data.circle}
               </p>
-              <h2 class="font-display text-2xl md:text-4xl font-medium leading-tight">
+              <h2 class="font-display text-xl md:text-3xl font-medium leading-tight">
                 {work.data.title}
               </h2>
             </div>
             <p class="hidden md:block col-span-3 text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors leading-relaxed line-clamp-2">
               {work.data.excerpt}
             </p>
-            <div class="col-span-12 md:col-span-2 flex md:justify-end items-center gap-3">
+            <div class="col-span-12 md:col-span-1 flex md:justify-end items-center gap-3">
               <span class="font-mono text-xs text-neutral-400 group-hover:text-neutral-300 transition-colors">
                 {work.data.releaseDate.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit' })}
               </span>
