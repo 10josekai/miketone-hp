@@ -1,19 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageShapes from '../components/PageShapes.astro';
 ---
 
 <Layout title="Contact" description="miketone — 依頼・相談はこちら">
 
-  <section class="px-5 md:px-10 pt-12 md:pt-20 pb-16 md:pb-24">
-    <div class="flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
+  <section class="relative px-5 md:px-10 pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
+    <PageShapes variant="contact" />
+    <div class="relative z-10 flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
       <span>— 04 / Contact</span>
       <span>2〜3営業日以内に返信</span>
     </div>
-    <h1 class="font-display text-[15vw] md:text-[11vw] lg:text-[9rem] font-medium leading-[0.92] tracking-tight mb-8">
+    <h1 class="relative z-10 font-display text-[15vw] md:text-[11vw] lg:text-[9rem] font-medium leading-[0.92] tracking-tight mb-8">
       <span class="mask-reveal block"><span>お問い</span></span>
       <span class="mask-reveal block"><span><span class="font-serif-it text-sky-500">合わせ</span></span></span>
     </h1>
-    <div class="md:max-w-2xl md:ml-auto reveal reveal-d2">
+    <div class="relative z-10 md:max-w-2xl md:ml-auto reveal reveal-d2">
       <p class="text-neutral-700 text-base md:text-lg leading-relaxed jp-balance">
         依頼内容・ご質問・お見積もり相談など、お気軽にどうぞ。<br />通常2〜3営業日以内にご返信します。
       </p>

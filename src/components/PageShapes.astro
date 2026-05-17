@@ -1,0 +1,183 @@
+---
+interface Props {
+  variant?: 'services' | 'portfolio' | 'blog' | 'contact';
+}
+const { variant = 'services' } = Astro.props;
+---
+
+<div id="page-shapes" class="absolute inset-0 pointer-events-none overflow-hidden" data-variant={variant}>
+  <canvas class="w-full h-full"></canvas>
+</div>
+
+<script>
+  import * as THREE from 'three';
+
+  type ShapeDef = {
+    geom: 'icosahedron' | 'torus' | 'ring';
+    size: number;
+    detail?: number;
+    tube?: number;
+    position: [number, number, number];
+    color: number;
+    wireframe?: boolean;
+    opacity?: number;
+    rotation?: [number, number, number];
+    floatSpeed?: number;
+    floatAmp?: number;
+    rotSpeed?: [number, number, number];
+  };
+
+  const SKY = 0x0ea5e9;
+  const SKY_LIGHT = 0x7dd3fc;
+  const AMBER = 0xfbbf24;
+  const INK = 0x0a0a0a;
+
+  const VARIANTS: Record<string, ShapeDef[]> = {
+    services: [
+      { geom: 'icosahedron', size: 0.55, detail: 1, position: [3.0, 1.6, 0], color: SKY, wireframe: true, opacity: 0.55, floatSpeed: 0.5, floatAmp: 0.25, rotSpeed: [0.12, 0.18, 0.05] },
+      { geom: 'torus', size: 0.4, tube: 0.012, position: [-3.2, 0.8, 0.3], color: INK, opacity: 0.6, rotation: [Math.PI / 2.5, 0, 0], floatSpeed: 0.4, floatAmp: 0.2, rotSpeed: [0.15, 0.2, 0.06] },
+      { geom: 'icosahedron', size: 0.13, detail: 3, position: [-2.0, -1.8, 0.5], color: AMBER, floatSpeed: 0.8, floatAmp: 0.3, rotSpeed: [0, 0, 0] },
+      { geom: 'ring', size: 0.18, tube: 0.008, position: [2.4, -1.4, -0.2], color: AMBER, opacity: 0.85, rotation: [Math.PI / 3, 0, 0], floatSpeed: 0.6, floatAmp: 0.25, rotSpeed: [0.18, 0.22, 0.05] },
+    ],
+    portfolio: [
+      { geom: 'ring', size: 0.5, tube: 0.012, position: [-3.4, 1.4, 0.2], color: SKY, opacity: 0.55, rotation: [Math.PI / 2.5, Math.PI / 6, 0], floatSpeed: 0.45, floatAmp: 0.22, rotSpeed: [0.1, 0.16, 0.04] },
+      { geom: 'icosahedron', size: 0.12, detail: 3, position: [2.6, 0.6, 0.6], color: INK, floatSpeed: 0.9, floatAmp: 0.35, rotSpeed: [0, 0, 0] },
+      { geom: 'torus', size: 0.16, tube: 0.008, position: [3.2, -1.6, 0], color: AMBER, opacity: 0.9, rotation: [Math.PI / 3, 0, 0], floatSpeed: 0.7, floatAmp: 0.3, rotSpeed: [0.2, 0.25, 0.08] },
+      { geom: 'icosahedron', size: 0.42, detail: 1, position: [-2.4, -1.8, 0.4], color: SKY, wireframe: true, opacity: 0.5, floatSpeed: 0.5, floatAmp: 0.2, rotSpeed: [0.1, 0.14, 0.05] },
+    ],
+    blog: [
+      { geom: 'icosahedron', size: 0.48, detail: 1, position: [3.2, 1.4, 0], color: SKY_LIGHT, wireframe: true, opacity: 0.55, floatSpeed: 0.55, floatAmp: 0.25, rotSpeed: [0.1, 0.15, 0.05] },
+      { geom: 'icosahedron', size: 0.16, detail: 3, position: [-2.6, 1.0, 0.4], color: AMBER, floatSpeed: 0.85, floatAmp: 0.3, rotSpeed: [0, 0, 0] },
+      { geom: 'ring', size: 0.32, tube: 0.01, position: [-3.0, -1.5, 0.2], color: INK, opacity: 0.55, rotation: [Math.PI / 2.5, 0, 0], floatSpeed: 0.4, floatAmp: 0.2, rotSpeed: [0.18, 0.2, 0.06] },
+    ],
+    contact: [
+      { geom: 'icosahedron', size: 0.5, detail: 1, position: [-3.2, 1.4, 0], color: SKY, wireframe: true, opacity: 0.55, floatSpeed: 0.5, floatAmp: 0.25, rotSpeed: [0.1, 0.16, 0.04] },
+      { geom: 'torus', size: 0.36, tube: 0.012, position: [3.0, -0.4, 0.3], color: AMBER, opacity: 0.85, rotation: [Math.PI / 3, 0, 0], floatSpeed: 0.55, floatAmp: 0.25, rotSpeed: [0.18, 0.22, 0.05] },
+      { geom: 'icosahedron', size: 0.1, detail: 2, position: [-2.0, -1.8, 0.5], color: INK, floatSpeed: 0.9, floatAmp: 0.35, rotSpeed: [0, 0, 0] },
+      { geom: 'icosahedron', size: 0.12, detail: 2, position: [2.2, 1.8, -0.2], color: SKY, floatSpeed: 1.0, floatAmp: 0.4, rotSpeed: [0, 0, 0] },
+    ],
+  };
+
+  const container = document.getElementById('page-shapes');
+  if (container) {
+    const variant = container.dataset.variant || 'services';
+    const canvas = container.querySelector('canvas') as HTMLCanvasElement;
+    const defs = VARIANTS[variant] || VARIANTS.services;
+
+    let width = container.clientWidth;
+    let height = container.clientHeight;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 100);
+    camera.position.z = 7;
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height, false);
+    renderer.setClearColor(0x000000, 0);
+
+    type FloatingShape = {
+      mesh: THREE.Object3D;
+      basePos: THREE.Vector3;
+      floatSpeed: number;
+      floatAmp: number;
+      rotSpeed: THREE.Vector3;
+      phase: number;
+    };
+
+    const shapes: FloatingShape[] = [];
+
+    defs.forEach((d) => {
+      let geometry: THREE.BufferGeometry;
+      if (d.geom === 'icosahedron') {
+        geometry = new THREE.IcosahedronGeometry(d.size, d.detail ?? 2);
+      } else if (d.geom === 'torus') {
+        geometry = new THREE.TorusGeometry(d.size, d.tube ?? 0.012, 16, 80);
+      } else {
+        geometry = new THREE.TorusGeometry(d.size, d.tube ?? 0.01, 12, 48);
+      }
+
+      const material = new THREE.MeshBasicMaterial({
+        color: d.color,
+        wireframe: d.wireframe ?? false,
+        transparent: d.opacity != null,
+        opacity: d.opacity ?? 1,
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(...d.position);
+      if (d.rotation) {
+        mesh.rotation.set(...d.rotation);
+      }
+      scene.add(mesh);
+
+      shapes.push({
+        mesh,
+        basePos: new THREE.Vector3(...d.position),
+        floatSpeed: d.floatSpeed ?? 0.5,
+        floatAmp: d.floatAmp ?? 0.2,
+        rotSpeed: new THREE.Vector3(...(d.rotSpeed ?? [0.1, 0.1, 0.05])),
+        phase: Math.random() * Math.PI * 2,
+      });
+    });
+
+    // Mouse parallax
+    const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.tx = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouse.ty = -(e.clientY / window.innerHeight - 0.5) * 2;
+    });
+
+    const clock = new THREE.Clock();
+    let frame = 0;
+
+    function animate() {
+      const t = clock.getElapsedTime();
+      frame = requestAnimationFrame(animate);
+
+      mouse.x += (mouse.tx - mouse.x) * 0.04;
+      mouse.y += (mouse.ty - mouse.y) * 0.04;
+
+      shapes.forEach((s) => {
+        s.mesh.position.y = s.basePos.y + Math.sin(t * s.floatSpeed + s.phase) * s.floatAmp;
+        s.mesh.position.x = s.basePos.x + Math.cos(t * s.floatSpeed * 0.8 + s.phase) * s.floatAmp * 0.5;
+        s.mesh.rotation.x += s.rotSpeed.x * 0.01;
+        s.mesh.rotation.y += s.rotSpeed.y * 0.01;
+        s.mesh.rotation.z += s.rotSpeed.z * 0.01;
+      });
+
+      camera.position.x = mouse.x * 0.4;
+      camera.position.y = mouse.y * 0.25;
+      camera.lookAt(0, 0, 0);
+
+      renderer.render(scene, camera);
+    }
+
+    function onResize() {
+      width = container!.clientWidth;
+      height = container!.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height, false);
+    }
+    window.addEventListener('resize', onResize);
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!frame) animate();
+        } else {
+          cancelAnimationFrame(frame);
+          frame = 0;
+        }
+      });
+    });
+    io.observe(container);
+
+    animate();
+  }
+</script>

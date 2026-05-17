@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import PageShapes from '../../components/PageShapes.astro';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -9,16 +10,17 @@ const posts = (await getCollection('blog'))
 <Layout title="Journal" description="miketone Journal — 制作の裏話・ノウハウ・確定申告トピック">
 
   <!-- Hero -->
-  <section class="px-5 md:px-10 pt-12 md:pt-20 pb-16 md:pb-24">
-    <div class="flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
+  <section class="relative px-5 md:px-10 pt-12 md:pt-20 pb-16 md:pb-24 overflow-hidden">
+    <PageShapes variant="blog" />
+    <div class="relative z-10 flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
       <span>— 03 / Blog</span>
       <span>{posts.length} entries</span>
     </div>
-    <h1 class="font-display text-[15vw] md:text-[11vw] lg:text-[9rem] font-medium leading-[0.92] tracking-tight mb-8">
+    <h1 class="relative z-10 font-display text-[15vw] md:text-[11vw] lg:text-[9rem] font-medium leading-[0.92] tracking-tight mb-8">
       <span class="mask-reveal block"><span>ブログ</span></span>
       <span class="mask-reveal block"><span><span class="font-serif-it text-sky-500">記事</span></span></span>
     </h1>
-    <div class="md:max-w-2xl md:ml-auto reveal reveal-d2">
+    <div class="relative z-10 md:max-w-2xl md:ml-auto reveal reveal-d2">
       <p class="text-neutral-700 text-base md:text-lg leading-relaxed jp-balance">
         制作の裏話、運営のノウハウ、確定申告のヒントなど。<br />現場で見つけた小さな知見を発信しています。
       </p>
