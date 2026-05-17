@@ -1,0 +1,51 @@
+---
+---
+
+<div id="age-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 backdrop-blur-sm" style="display:none">
+  <div class="bg-white rounded-2xl shadow-2xl p-8 mx-4 max-w-md w-full text-center">
+    <div class="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+      </svg>
+    </div>
+    <h2 class="text-xl font-bold text-slate-900 mb-2">年齢確認</h2>
+    <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+      このサイトは成人向けコンテンツ（音声作品）の情報を含みます。<br />
+      あなたは18歳以上ですか？
+    </p>
+    <div class="flex flex-col gap-3">
+      <button
+        id="age-yes"
+        class="w-full py-3 px-6 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl transition-colors duration-200 cursor-pointer"
+      >
+        はい、18歳以上です
+      </button>
+      <button
+        id="age-no"
+        class="w-full py-3 px-6 bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium rounded-xl transition-colors duration-200 cursor-pointer"
+      >
+        いいえ、18歳未満です
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const gate = document.getElementById('age-gate')!;
+  const verified = localStorage.getItem('age-verified');
+
+  if (!verified) {
+    gate.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.getElementById('age-yes')!.addEventListener('click', () => {
+    localStorage.setItem('age-verified', '1');
+    gate.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+
+  document.getElementById('age-no')!.addEventListener('click', () => {
+    window.location.href = 'https://www.google.com';
+  });
+</script>

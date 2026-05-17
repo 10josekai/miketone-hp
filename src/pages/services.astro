@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Services" description="miketoneのサービス一覧 — シナリオ制作・サークル運営補助・確定申告補助">
+
+  <div class="max-w-4xl mx-auto px-6 py-20">
+
+    <div class="text-center mb-16 fade-in">
+      <p class="text-sky-500 font-semibold text-sm tracking-widest uppercase mb-2">Services</p>
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">サービス一覧</h1>
+      <p class="text-slate-500 text-lg">音声作品制作の現場に特化した、専門的なサポートを提供します。</p>
+    </div>
+
+    <!-- シナリオ制作 -->
+    <section id="scenario" class="mb-16 fade-in">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900">シナリオ制作</h2>
+      </div>
+      <div class="bg-slate-50 rounded-2xl p-8">
+        <p class="text-slate-600 leading-relaxed mb-6">
+          DLSiteに販売する成人男性向け音声作品のシナリオ（台本）を制作します。
+          ご要望のジャンル・キャラクター設定・シチュエーションに合わせ、
+          声優さんが読みやすく、リスナーに刺さる台本を作成します。
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            '世界観・設定ヒアリング',
+            'プロット作成・すり合わせ',
+            '台本執筆（ト書き込み）',
+            'リテイク対応',
+            '文字数・時間目安の相談可',
+            'ジャンル幅広く対応',
+          ].map((item) => (
+            <div class="flex items-center gap-2.5 text-slate-700 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- サークル運営補助 -->
+    <section id="management" class="mb-16 fade-in fade-in-delay-1">
+      <div class="flex items-center gap-4 mb-2">
+        <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">サークル運営補助</h2>
+          <span class="text-sky-500 text-sm font-medium">メインサービス</span>
+        </div>
+      </div>
+      <div class="bg-sky-50 border border-sky-100 rounded-2xl p-8 mt-6">
+        <p class="text-slate-600 leading-relaxed mb-6">
+          サークル主・ディレクターの業務負担を軽減する運営補助がメインサービスです。
+          マネジメント・タスク管理・関係者への連絡代行など、
+          制作の「裏方」を一手に担います。
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          {[
+            'スタッフ・声優へのスケジュール管理',
+            'タスクの整理・進捗管理',
+            '関係者への連絡代行・調整',
+            'DLSite出品作業のサポート',
+            '制作フロー構築・改善提案',
+            '法人・サークルの連絡窓口代行',
+          ].map((item) => (
+            <div class="flex items-center gap-2.5 text-slate-700 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              {item}
+            </div>
+          ))}
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+          <strong>注意：</strong>法人・サークルからの依頼は連絡代行・運営補助のみ対応。会計・確定申告対応は個人の方のみとなります。
+        </div>
+      </div>
+    </section>
+
+    <!-- 確定申告・会計補助 -->
+    <section id="tax" class="mb-16 fade-in fade-in-delay-2">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">確定申告・会計ソフト操作補助</h2>
+          <span class="text-slate-400 text-sm">オプションサービス</span>
+        </div>
+      </div>
+      <div class="bg-slate-50 rounded-2xl p-8">
+        <p class="text-slate-600 leading-relaxed mb-6">
+          フリーランス・個人クリエイター向けに、確定申告や会計ソフトの操作補助を行います。
+          これまで50名以上の申告・ソフト設定をサポートした実績があります。<br />
+          <strong class="text-slate-700">※個人の方のみ対応。税務代理・税務代行ではありません。</strong>
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            '確定申告の全体フロー説明',
+            '会計ソフト（freee・マネフォ等）初期設定',
+            '経費・売上の入力サポート',
+            '申告書の確認補助',
+          ].map((item) => (
+            <div class="flex items-center gap-2.5 text-slate-700 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="text-center fade-in fade-in-delay-3">
+      <p class="text-slate-500 mb-6">料金・詳細はお問い合わせください</p>
+      <a
+        href="/contact"
+        class="inline-flex items-center px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg shadow-sky-500/20"
+      >
+        依頼・相談する
+      </a>
+    </div>
+
+  </div>
+</Layout>

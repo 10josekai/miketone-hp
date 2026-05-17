@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const categories = ['ノウハウ', 'リリース情報', '確定申告・会計'] as const;
+---
+
+<Layout title="Blog" description="miketone ブログ — 音声作品制作のノウハウ、リリース情報など">
+
+  <div class="max-w-4xl mx-auto px-6 py-20">
+
+    <div class="text-center mb-16 fade-in">
+      <p class="text-sky-500 font-semibold text-sm tracking-widest uppercase mb-2">Blog</p>
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">ブログ</h1>
+      <p class="text-slate-500">制作の裏話・ノウハウ・リリース情報などを発信しています。</p>
+    </div>
+
+    {posts.length === 0 ? (
+      <div class="text-center py-24 text-slate-400">
+        <p>記事を準備中です。</p>
+      </div>
+    ) : (
+      <div class="space-y-6">
+        {posts.map((post, i) => (
+          <a
+            href={`/blog/${post.id}`}
+            class={`group flex flex-col sm:flex-row gap-5 p-6 rounded-2xl border border-slate-100 hover:border-sky-200 hover:shadow-lg hover:shadow-sky-500/5 transition-all duration-300 bg-white fade-in fade-in-delay-${(i % 4) + 1}`}
+          >
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="inline-block px-2.5 py-0.5 bg-sky-50 text-sky-600 text-xs font-medium rounded-full">{post.data.category}</span>
+                <span class="text-xs text-slate-400">{post.data.pubDate.toLocaleDateString('ja-JP')}</span>
+              </div>
+              <h2 class="font-bold text-slate-900 text-lg mb-2 group-hover:text-sky-600 transition-colors line-clamp-2">{post.data.title}</h2>
+              <p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">{post.data.description}</p>
+            </div>
+            <div class="self-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-300 group-hover:text-sky-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+
+  </div>
+</Layout>
