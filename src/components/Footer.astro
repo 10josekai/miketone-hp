@@ -9,9 +9,9 @@ const year = new Date().getFullYear();
     <div class="marquee items-center">
       {Array.from({ length: 6 }).map(() => (
         <span class="flex items-center gap-8 pr-8 font-display text-4xl md:text-6xl font-medium whitespace-nowrap">
-          Get in touch
+          お気軽にどうぞ
           <span class="text-sky-500">✦</span>
-          <span class="font-serif-it">say hello</span>
+          <span class="font-serif-it">Contact us</span>
           <span class="text-sky-500">✦</span>
         </span>
       ))}
@@ -34,18 +34,18 @@ const year = new Date().getFullYear();
 
       <!-- Index -->
       <div class="col-span-1 md:col-span-3 md:col-start-7">
-        <p class="font-mono text-xs text-neutral-500 mb-4 uppercase tracking-widest">Index</p>
+        <p class="font-mono text-xs text-neutral-500 mb-4 uppercase tracking-widest">ページ</p>
         <ul class="space-y-2.5 text-sm">
           <li><a href="/services" class="link-underline">Services</a></li>
           <li><a href="/portfolio" class="link-underline">Portfolio</a></li>
-          <li><a href="/blog" class="link-underline">Journal</a></li>
+          <li><a href="/blog" class="link-underline">Blog</a></li>
           <li><a href="/contact" class="link-underline">Contact</a></li>
         </ul>
       </div>
 
       <!-- Get in touch -->
       <div class="col-span-1 md:col-span-3">
-        <p class="font-mono text-xs text-neutral-500 mb-4 uppercase tracking-widest">Connect</p>
+        <p class="font-mono text-xs text-neutral-500 mb-4 uppercase tracking-widest">お問い合わせ</p>
         <a
           href="/contact"
           class="inline-flex items-center gap-2 group text-sm border-b border-neutral-700 pb-1"
@@ -60,10 +60,8 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="border-t border-neutral-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-xs text-neutral-500">
-      <p>© {year} miketone — all rights reserved.</p>
-      <p class="font-mono">
-        <span class="font-serif-it text-sky-400">crafted with care</span>
-      </p>
+      <p>© {year} miketone</p>
+      <p class="font-mono">All rights reserved.</p>
     </div>
   </div>
 </footer>

@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import WaveBackground from '../components/WaveBackground.astro';
 ---
 
 <Layout title="Services" description="miketoneのサービス — シナリオ制作・サークル運営補助・確定申告補助">
@@ -9,16 +8,16 @@ import WaveBackground from '../components/WaveBackground.astro';
   <section class="px-5 md:px-10 pt-12 md:pt-20 pb-16 md:pb-24">
     <div class="flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
       <span>— 01 / Services</span>
-      <span>3 disciplines</span>
+      <span>3 areas</span>
     </div>
     <h1 class="font-display text-[15vw] md:text-[10vw] lg:text-[9rem] font-medium leading-[0.92] tracking-tight mb-8">
-      <span class="mask-reveal block"><span>3 つの</span></span>
-      <span class="mask-reveal block"><span><span class="font-serif-it text-sky-500">専門</span>領域。</span></span>
+      <span class="mask-reveal block"><span>サービス</span></span>
+      <span class="mask-reveal block"><span><span class="font-serif-it text-sky-500">一覧</span>。</span></span>
     </h1>
     <div class="md:max-w-2xl md:ml-auto reveal reveal-d2">
       <p class="text-neutral-700 text-base md:text-lg leading-relaxed">
-        音声作品の制作現場で必要とされる業務を、3つの軸で深くカバーします。
-        シナリオの執筆、サークル運営の裏側、そしてフリーランス向けの会計まで。
+        音声作品の制作現場で必要とされる業務を、3つの分野でカバーします。
+        シナリオ制作、サークル運営のサポート、個人事業主の方の確定申告補助まで。
       </p>
     </div>
   </section>
@@ -59,9 +58,8 @@ import WaveBackground from '../components/WaveBackground.astro';
 
   <!-- Service 02 — Management (MAIN, dark) -->
   <section id="management" class="bg-[var(--color-ink)] text-[var(--color-paper)] px-5 md:px-10 py-20 md:py-32 relative overflow-hidden">
-    <WaveBackground color="#0ea5e9" opacity={0.15} />
     <div class="grain absolute inset-0"></div>
-    <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-8 gap-x-6">
+    <div class="relative grid grid-cols-1 md:grid-cols-12 gap-y-8 gap-x-6">
       <div class="md:col-span-5 reveal">
         <span class="big-number text-6xl md:text-9xl block leading-none mb-6 text-sky-400">02</span>
         <h2 class="font-display text-4xl md:text-6xl font-medium leading-tight">
@@ -111,10 +109,10 @@ import WaveBackground from '../components/WaveBackground.astro';
       </div>
       <div class="md:col-span-6 md:col-start-7 reveal reveal-d1">
         <p class="text-base md:text-lg text-neutral-700 leading-relaxed mb-2">
-          フリーランス・個人クリエイター向けに、確定申告や会計ソフトの操作補助を行います。
+          個人事業主・フリーランスの方向けに、確定申告や会計ソフトの操作補助を行います。
           これまで50名以上の申告・ソフト設定をサポートした実績があります。
         </p>
-        <p class="text-sm text-neutral-500 mb-10 font-serif-it">
+        <p class="text-sm text-neutral-500 mb-10">
           ※ 個人の方のみ対応。税理士による税務代理・税務代行ではありません。
         </p>
         <ul class="space-y-4">
@@ -138,10 +136,10 @@ import WaveBackground from '../components/WaveBackground.astro';
   <section class="px-5 md:px-10 py-24 md:py-32 bg-sky-500 text-white relative overflow-hidden">
     <div class="grain absolute inset-0"></div>
     <div class="relative max-w-4xl">
-      <p class="font-mono text-xs uppercase tracking-widest text-sky-100 mb-8 reveal">— Pricing & inquiry</p>
+      <p class="font-mono text-xs uppercase tracking-widest text-sky-100 mb-8 reveal">— お問い合わせ</p>
       <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight mb-8 reveal reveal-d1">
         料金・詳細は<br />
-        <span class="font-serif-it">お気軽に</span>。
+        お気軽に。
       </h2>
       <p class="text-sky-100 text-lg mb-10 max-w-xl reveal reveal-d2">
         ご相談・お見積もりは無料です。まずは依頼内容を聞かせてください。

@@ -4,9 +4,9 @@
 <div id="age-gate" class="fixed inset-0 z-[60] bg-[var(--color-ink)] text-[var(--color-paper)] flex items-center justify-center" style="display:none">
   <div class="grain absolute inset-0"></div>
   <div class="relative z-10 max-w-xl mx-auto px-6 text-center">
-    <p class="font-mono text-xs uppercase tracking-[0.3em] text-sky-400 mb-8">— Age Verification —</p>
-    <h2 class="font-display text-5xl md:text-7xl font-medium leading-none mb-6">
-      Are you<br /><span class="font-serif-it">over 18</span>?
+    <p class="font-mono text-xs uppercase tracking-[0.3em] text-sky-400 mb-8">— 年齢確認 —</p>
+    <h2 class="font-display text-5xl md:text-7xl font-medium leading-tight mb-6">
+      18歳以上ですか？
     </h2>
     <p class="text-neutral-400 text-sm leading-relaxed mb-10 max-w-md mx-auto">
       このサイトは成人向けコンテンツ（音声作品）の情報を含みます。<br />
@@ -30,8 +30,9 @@
 </div>
 
 <script>
+  const STORAGE_KEY = 'mt-age-verified-v2';
   const gate = document.getElementById('age-gate')!;
-  const verified = localStorage.getItem('age-verified');
+  const verified = localStorage.getItem(STORAGE_KEY);
 
   if (!verified) {
     gate.style.display = 'flex';
@@ -39,7 +40,7 @@
   }
 
   document.getElementById('age-yes')!.addEventListener('click', () => {
-    localStorage.setItem('age-verified', '1');
+    localStorage.setItem(STORAGE_KEY, '1');
     gate.style.opacity = '0';
     gate.style.transition = 'opacity 0.5s';
     setTimeout(() => {
