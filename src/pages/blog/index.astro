@@ -4,48 +4,66 @@ import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const categories = ['ノウハウ', 'リリース情報', '確定申告・会計'] as const;
 ---
 
-<Layout title="Blog" description="miketone ブログ — 音声作品制作のノウハウ、リリース情報など">
+<Layout title="Journal" description="miketone Journal — 制作の裏話・ノウハウ・確定申告トピック">
 
-  <div class="max-w-4xl mx-auto px-6 py-20">
-
-    <div class="text-center mb-16 fade-in">
-      <p class="text-sky-500 font-semibold text-sm tracking-widest uppercase mb-2">Blog</p>
-      <h1 class="text-4xl font-bold text-slate-900 mb-4">ブログ</h1>
-      <p class="text-slate-500">制作の裏話・ノウハウ・リリース情報などを発信しています。</p>
+  <!-- Hero -->
+  <section class="px-5 md:px-10 pt-12 md:pt-20 pb-16 md:pb-24">
+    <div class="flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
+      <span>— 03 / Journal</span>
+      <span>{posts.length} entries</span>
     </div>
+    <h1 class="font-display text-[15vw] md:text-[10vw] lg:text-[9rem] font-medium leading-[0.92] tracking-tight mb-8">
+      <span class="mask-reveal block"><span>思考の</span></span>
+      <span class="mask-reveal block"><span><span class="font-serif-it text-sky-500">記録</span>。</span></span>
+    </h1>
+    <div class="md:max-w-2xl md:ml-auto reveal reveal-d2">
+      <p class="text-neutral-700 text-base md:text-lg leading-relaxed">
+        制作の裏話、運営ノウハウ、確定申告のヒントなど。<br />
+        現場で見つけた小さな知見を、ここに少しずつ。
+      </p>
+    </div>
+  </section>
 
-    {posts.length === 0 ? (
-      <div class="text-center py-24 text-slate-400">
-        <p>記事を準備中です。</p>
-      </div>
-    ) : (
-      <div class="space-y-6">
-        {posts.map((post, i) => (
-          <a
-            href={`/blog/${post.id}`}
-            class={`group flex flex-col sm:flex-row gap-5 p-6 rounded-2xl border border-slate-100 hover:border-sky-200 hover:shadow-lg hover:shadow-sky-500/5 transition-all duration-300 bg-white fade-in fade-in-delay-${(i % 4) + 1}`}
-          >
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-2">
-                <span class="inline-block px-2.5 py-0.5 bg-sky-50 text-sky-600 text-xs font-medium rounded-full">{post.data.category}</span>
-                <span class="text-xs text-slate-400">{post.data.pubDate.toLocaleDateString('ja-JP')}</span>
-              </div>
-              <h2 class="font-bold text-slate-900 text-lg mb-2 group-hover:text-sky-600 transition-colors line-clamp-2">{post.data.title}</h2>
-              <p class="text-slate-500 text-sm line-clamp-2 leading-relaxed">{post.data.description}</p>
+  {posts.length === 0 ? (
+    <div class="px-5 md:px-10 py-24 text-center">
+      <p class="font-display text-4xl text-neutral-400 font-serif-it">準備中 —</p>
+    </div>
+  ) : (
+    <section class="border-t border-[var(--color-ink)]">
+      {posts.map((post, i) => (
+        <a
+          href={`/blog/${post.id}`}
+          class={`group block border-b border-neutral-200 hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)] transition-colors duration-500 reveal reveal-d${(i % 4) + 1}`}
+        >
+          <div class="px-5 md:px-10 py-8 md:py-10 grid grid-cols-12 gap-x-4 gap-y-3 items-center">
+            <span class="col-span-2 md:col-span-1 font-mono text-xs text-neutral-400 group-hover:text-sky-400 transition-colors">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div class="col-span-10 md:col-span-7">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-sky-600 group-hover:text-sky-400 transition-colors mb-2">
+                {post.data.category}
+              </p>
+              <h2 class="font-display text-2xl md:text-3xl font-medium leading-snug">
+                {post.data.title}
+              </h2>
             </div>
-            <div class="self-center shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-300 group-hover:text-sky-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
+            <p class="hidden md:block md:col-span-3 text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors leading-relaxed line-clamp-2">
+              {post.data.description}
+            </p>
+            <div class="col-span-12 md:col-span-1 md:text-right">
+              <span class="font-mono text-xs text-neutral-400 group-hover:text-neutral-300 transition-colors">
+                {post.data.pubDate.toLocaleDateString('ja-JP', { year: '2-digit', month: '2-digit', day: '2-digit' })}
+              </span>
             </div>
-          </a>
-        ))}
-      </div>
-    )}
+          </div>
+          <p class="md:hidden px-5 pb-6 -mt-2 text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors">
+            {post.data.description}
+          </p>
+        </a>
+      ))}
+    </section>
+  )}
 
-  </div>
 </Layout>

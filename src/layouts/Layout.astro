@@ -9,7 +9,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'miketone | 音声作品シナリオ・サークル運営補助' } = Astro.props;
+const { title, description = 'miketone | 音声作品シナリオ・サークル運営補助・確定申告補助' } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,12 +18,17 @@ const { title, description = 'miketone | 音声作品シナリオ・サークル
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <title>{title} | miketone</title>
+    <meta name="theme-color" content="#fafaf7" />
+    <title>{title} — miketone</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col bg-[var(--color-paper)] text-[var(--color-ink)] overflow-x-hidden">
     <AgeVerification />
     <Header />
     <main class="flex-1">
@@ -31,7 +36,10 @@ const { title, description = 'miketone | 音声作品シナリオ・サークル
     </main>
     <Footer />
 
+    <div class="cursor-dot" id="cursor-dot"></div>
+
     <script>
+      // Scroll reveal
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -40,9 +48,20 @@ const { title, description = 'miketone | 音声作品シナリオ・サークル
             }
           });
         },
-        { threshold: 0.1 }
+        { threshold: 0.12, rootMargin: '0px 0px -80px 0px' }
       );
-      document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+      document.querySelectorAll('.reveal, .mask-reveal').forEach((el) => observer.observe(el));
+
+      // Cursor
+      const cursor = document.getElementById('cursor-dot')!;
+      window.addEventListener('mousemove', (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+      });
+      document.querySelectorAll('a, button, [data-cursor]').forEach((el) => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+      });
     </script>
   </body>
 </html>

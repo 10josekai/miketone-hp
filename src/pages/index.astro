@@ -8,189 +8,303 @@ const latestPosts = (await getCollection('blog'))
 
 const latestWorks = (await getCollection('portfolio'))
   .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3);
+  .slice(0, 4);
 ---
 
-<Layout title="Home" description="miketone | 音声作品シナリオ制作・サークル運営補助・確定申告補助">
+<Layout title="Index" description="miketone — 音声作品シナリオ制作・サークル運営補助・確定申告補助">
 
-  <!-- Hero -->
-  <section class="relative min-h-[88vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-50 to-sky-50">
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="absolute top-20 right-10 w-72 h-72 bg-sky-400/10 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-20 left-10 w-96 h-96 bg-sky-300/10 rounded-full blur-3xl"></div>
+  <!-- ====== HERO ====== -->
+  <section class="relative px-5 md:px-10 pt-12 md:pt-24 pb-24 md:pb-32">
+    <!-- top meta line -->
+    <div class="flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
+      <span>— Scenario × Management × Consulting</span>
+      <span class="hidden sm:inline">Tokyo / Japan</span>
     </div>
 
-    <div class="max-w-6xl mx-auto px-6 py-24 relative z-10">
-      <p class="text-sky-500 font-semibold text-sm tracking-widest uppercase mb-4 fade-in">Scenario / Management / Consulting</p>
-      <h1 class="text-4xl md:text-6xl font-bold text-slate-900 leading-tight mb-6 fade-in fade-in-delay-1">
-        音声作品の制作を、<br />
-        <span class="text-sky-500">もっとスムーズに。</span>
+    <!-- Massive headline -->
+    <div class="relative">
+      <h1 class="font-display text-[16vw] md:text-[12vw] lg:text-[11rem] font-medium leading-[0.92] tracking-tight">
+        <span class="mask-reveal block"><span>音 声 制 作 の、</span></span>
+        <span class="mask-reveal block"><span>静かな <span class="font-serif-it text-sky-500">伴走者</span>。</span></span>
       </h1>
-      <p class="text-slate-600 text-lg md:text-xl max-w-xl leading-relaxed mb-10 fade-in fade-in-delay-2">
-        シナリオ制作からサークル運営補助まで。<br />
-        あなたの制作活動を、裏側からサポートします。
-      </p>
-      <div class="flex flex-wrap gap-4 fade-in fade-in-delay-3">
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mt-12 md:mt-16">
+      <div class="md:col-span-5 md:col-start-7 reveal reveal-d2">
+        <p class="text-neutral-700 text-base md:text-lg leading-relaxed mb-8">
+          DLSiteに展開する成人男性向け音声作品の <span class="font-serif-it text-sky-600">シナリオ制作</span> と、
+          サークル運営の <span class="font-serif-it text-sky-600">マネジメント・連絡代行</span> を中心に、
+          個人クリエイター向けの <span class="font-serif-it text-sky-600">確定申告補助</span> までを担います。
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href="/services"
+            class="inline-flex items-center gap-2 px-6 py-3.5 bg-[var(--color-ink)] text-[var(--color-paper)] text-sm font-medium rounded-full hover:bg-sky-500 transition-colors duration-300 group"
+          >
+            <span class="font-mono text-[10px] opacity-60">→ 01</span>
+            サービスを見る
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 px-6 py-3.5 border border-[var(--color-ink)] text-sm font-medium rounded-full hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)] transition-colors duration-300"
+          >
+            依頼・相談する
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-5 md:left-10 hidden md:flex items-center gap-3 text-xs font-mono text-neutral-400">
+      <span class="w-12 h-px bg-neutral-400"></span>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ====== MARQUEE ====== -->
+  <section class="border-y border-neutral-200 py-8 overflow-hidden bg-[var(--color-paper)]">
+    <div class="marquee items-center">
+      {Array.from({ length: 6 }).map(() => (
+        <span class="flex items-center gap-12 pr-12 font-display text-3xl md:text-5xl font-medium whitespace-nowrap">
+          シナリオ制作
+          <span class="text-sky-500">✦</span>
+          <span class="font-serif-it text-neutral-400">scenario</span>
+          <span class="text-sky-500">✦</span>
+          サークル運営補助
+          <span class="text-sky-500">✦</span>
+          <span class="font-serif-it text-neutral-400">management</span>
+          <span class="text-sky-500">✦</span>
+          確定申告補助
+          <span class="text-sky-500">✦</span>
+          <span class="font-serif-it text-neutral-400">tax</span>
+          <span class="text-sky-500">✦</span>
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <!-- ====== INDEX OF SERVICES ====== -->
+  <section class="px-5 md:px-10 py-24 md:py-32">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-y-6 gap-x-6 mb-16 md:mb-24">
+      <div class="md:col-span-3">
+        <p class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-2 reveal">— 01 / Services</p>
+      </div>
+      <div class="md:col-span-9 reveal reveal-d1">
+        <h2 class="font-display text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] tracking-tight">
+          できることは <span class="font-serif-it text-sky-500">3つ</span>。<br />
+          それぞれ深く。
+        </h2>
+      </div>
+    </div>
+
+    <div class="space-y-px bg-neutral-200">
+      <!-- Service 1 -->
+      <a href="/services#scenario" class="group block bg-[var(--color-paper)] hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)] transition-colors duration-500 reveal">
+        <div class="px-2 md:px-8 py-8 md:py-12 grid grid-cols-12 gap-4 items-center">
+          <span class="col-span-2 big-number text-3xl md:text-5xl text-neutral-300 group-hover:text-sky-500 transition-colors">01</span>
+          <div class="col-span-10 md:col-span-7">
+            <h3 class="font-display text-2xl md:text-4xl font-medium mb-2">
+              シナリオ制作
+              <span class="font-serif-it text-neutral-400 text-lg md:text-2xl">— Scenario writing</span>
+            </h3>
+            <p class="text-sm md:text-base text-neutral-500 group-hover:text-neutral-300 transition-colors max-w-2xl">
+              DLSite成人男性向け音声作品の台本を、ジャンル・キャラクター・尺感に合わせて執筆。声優さんが読みやすい構成で。
+            </p>
+          </div>
+          <div class="hidden md:flex col-span-3 justify-end">
+            <span class="font-mono text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity inline-flex items-center gap-2">
+              View more
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Service 2 (MAIN) -->
+      <a href="/services#management" class="group block bg-[var(--color-paper)] hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)] transition-colors duration-500 reveal reveal-d1">
+        <div class="px-2 md:px-8 py-8 md:py-12 grid grid-cols-12 gap-4 items-center">
+          <span class="col-span-2 big-number text-3xl md:text-5xl text-neutral-300 group-hover:text-sky-500 transition-colors">02</span>
+          <div class="col-span-10 md:col-span-7">
+            <h3 class="font-display text-2xl md:text-4xl font-medium mb-2 flex flex-wrap items-baseline gap-x-3">
+              サークル運営補助
+              <span class="text-xs md:text-sm font-sans font-normal bg-sky-500 text-white px-2 py-0.5 rounded-full">MAIN</span>
+            </h3>
+            <p class="text-sm md:text-base text-neutral-500 group-hover:text-neutral-300 transition-colors max-w-2xl">
+              マネジメント・タスク管理・関係者への連絡代行。サークル主の作業負担を肩代わりする、いちばん中核のサービス。
+            </p>
+          </div>
+          <div class="hidden md:flex col-span-3 justify-end">
+            <span class="font-mono text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity inline-flex items-center gap-2">
+              View more
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Service 3 -->
+      <a href="/services#tax" class="group block bg-[var(--color-paper)] hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)] transition-colors duration-500 reveal reveal-d2">
+        <div class="px-2 md:px-8 py-8 md:py-12 grid grid-cols-12 gap-4 items-center">
+          <span class="col-span-2 big-number text-3xl md:text-5xl text-neutral-300 group-hover:text-sky-500 transition-colors">03</span>
+          <div class="col-span-10 md:col-span-7">
+            <h3 class="font-display text-2xl md:text-4xl font-medium mb-2 flex flex-wrap items-baseline gap-x-3">
+              確定申告・会計補助
+              <span class="text-xs md:text-sm font-sans font-normal text-neutral-400">— Optional</span>
+            </h3>
+            <p class="text-sm md:text-base text-neutral-500 group-hover:text-neutral-300 transition-colors max-w-2xl">
+              個人クリエイター50名以上の申告・会計ソフト設定をサポートしてきた経験を活かしたオプションサービス。
+            </p>
+          </div>
+          <div class="hidden md:flex col-span-3 justify-end">
+            <span class="font-mono text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity inline-flex items-center gap-2">
+              View more
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ====== STATS / NUMBERS ====== -->
+  <section class="bg-[var(--color-ink)] text-[var(--color-paper)] py-24 md:py-32 px-5 md:px-10 relative overflow-hidden">
+    <div class="grain absolute inset-0"></div>
+    <div class="relative">
+      <p class="font-mono text-xs uppercase tracking-widest text-sky-400 mb-12 reveal">— Numbers</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-6">
+        <div class="reveal">
+          <p class="big-number text-6xl md:text-8xl font-medium text-sky-400">50+</p>
+          <p class="font-mono text-xs uppercase tracking-widest text-neutral-400 mt-3">個人申告サポート実績</p>
+        </div>
+        <div class="reveal reveal-d1">
+          <p class="big-number text-6xl md:text-8xl font-medium">∞</p>
+          <p class="font-mono text-xs uppercase tracking-widest text-neutral-400 mt-3">担当作品（更新中）</p>
+        </div>
+        <div class="reveal reveal-d2">
+          <p class="big-number text-6xl md:text-8xl font-medium">24h</p>
+          <p class="font-mono text-xs uppercase tracking-widest text-neutral-400 mt-3">初回返信目安</p>
+        </div>
+        <div class="reveal reveal-d3">
+          <p class="big-number text-6xl md:text-8xl font-medium">3<span class="font-serif-it text-sky-400">+</span></p>
+          <p class="font-mono text-xs uppercase tracking-widest text-neutral-400 mt-3">提供サービス領域</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PORTFOLIO PEEK ====== -->
+  {latestWorks.length > 0 && (
+    <section class="px-5 md:px-10 py-24 md:py-32">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-y-6 gap-x-6 mb-12 md:mb-16">
+        <div class="md:col-span-3">
+          <p class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-2 reveal">— 02 / Selected</p>
+        </div>
+        <div class="md:col-span-9 reveal reveal-d1 flex flex-wrap items-end justify-between gap-4">
+          <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight">
+            担当作品 <span class="font-serif-it text-sky-500">— ピックアップ</span>
+          </h2>
+          <a href="/portfolio" class="link-underline font-mono text-xs uppercase tracking-widest">View all →</a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-neutral-200">
+        {latestWorks.map((work, i) => (
+          <a
+            href={work.data.dlsiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`group bg-[var(--color-paper)] p-8 md:p-12 hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)] transition-colors duration-500 reveal reveal-d${i + 1}`}
+          >
+            <div class="flex items-start justify-between mb-12">
+              <span class="font-mono text-xs uppercase tracking-widest text-neutral-400 group-hover:text-sky-400 transition-colors">
+                — {String(i + 1).padStart(2, '0')} / {work.data.circle}
+              </span>
+              <span class="font-mono text-xs text-neutral-400 group-hover:text-neutral-400 transition-colors">
+                {work.data.releaseDate.getFullYear()}
+              </span>
+            </div>
+            <h3 class="font-display text-2xl md:text-4xl font-medium leading-tight mb-6">
+              {work.data.title}
+            </h3>
+            <p class="text-sm text-neutral-500 group-hover:text-neutral-300 transition-colors leading-relaxed line-clamp-3">
+              {work.data.excerpt}
+            </p>
+            <div class="mt-12 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest">
+              DLSite →
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ====== JOURNAL ====== -->
+  {latestPosts.length > 0 && (
+    <section class="px-5 md:px-10 py-24 md:py-32 border-t border-neutral-200">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-y-6 gap-x-6 mb-12 md:mb-16">
+        <div class="md:col-span-3">
+          <p class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-2 reveal">— 03 / Journal</p>
+        </div>
+        <div class="md:col-span-9 reveal reveal-d1 flex flex-wrap items-end justify-between gap-4">
+          <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight">
+            記す、<span class="font-serif-it text-sky-500">思考と知見</span>。
+          </h2>
+          <a href="/blog" class="link-underline font-mono text-xs uppercase tracking-widest">View all →</a>
+        </div>
+      </div>
+
+      <div class="border-t border-neutral-200">
+        {latestPosts.map((post, i) => (
+          <a
+            href={`/blog/${post.id}`}
+            class={`group block border-b border-neutral-200 py-8 md:py-10 grid grid-cols-12 gap-4 items-center reveal reveal-d${i + 1}`}
+          >
+            <span class="col-span-2 md:col-span-1 font-mono text-xs text-neutral-400">{String(i + 1).padStart(2, '0')}</span>
+            <div class="col-span-10 md:col-span-7">
+              <p class="font-mono text-[10px] uppercase tracking-widest text-sky-600 mb-2">{post.data.category}</p>
+              <h3 class="font-display text-2xl md:text-3xl font-medium leading-snug group-hover:text-sky-600 transition-colors">
+                {post.data.title}
+              </h3>
+            </div>
+            <div class="hidden md:block md:col-span-3 text-sm text-neutral-500">
+              {post.data.description}
+            </div>
+            <div class="hidden md:block md:col-span-1 text-right font-mono text-xs text-neutral-400">
+              {post.data.pubDate.toLocaleDateString('ja-JP', { year: '2-digit', month: '2-digit', day: '2-digit' })}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- ====== CTA ====== -->
+  <section class="px-5 md:px-10 py-24 md:py-40 bg-sky-500 text-white relative overflow-hidden">
+    <div class="grain absolute inset-0"></div>
+    <div class="relative">
+      <p class="font-mono text-xs uppercase tracking-widest text-sky-100 mb-8 reveal">— Get in touch / 04</p>
+      <h2 class="font-display text-6xl md:text-[10rem] font-medium leading-[0.92] tracking-tight mb-12 reveal reveal-d1">
+        Let's<br />
+        <span class="font-serif-it">make something</span><br />
+        together.
+      </h2>
+      <div class="reveal reveal-d2">
         <a
-          href="/services"
-          class="inline-flex items-center px-6 py-3 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg shadow-sky-500/20"
+          href="/contact"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-white text-[var(--color-ink)] text-sm md:text-base font-medium rounded-full hover:bg-[var(--color-ink)] hover:text-white transition-colors duration-300 group"
         >
-          サービスを見る
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          依頼・相談する
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a
-          href="/portfolio"
-          class="inline-flex items-center px-6 py-3 bg-white hover:bg-slate-50 text-slate-700 font-semibold rounded-xl transition-all duration-200 hover:scale-105 border border-slate-200 shadow-sm"
-        >
-          作品を見る
-        </a>
       </div>
-    </div>
-  </section>
-
-  <!-- Services overview -->
-  <section class="py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16 fade-in">
-        <p class="text-sky-500 font-semibold text-sm tracking-widest uppercase mb-2">Services</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900">できること</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="group p-8 rounded-2xl border border-slate-100 hover:border-sky-200 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 fade-in fade-in-delay-1">
-          <div class="w-12 h-12 bg-sky-50 group-hover:bg-sky-100 rounded-xl flex items-center justify-center mb-5 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">シナリオ制作</h3>
-          <p class="text-slate-500 text-sm leading-relaxed">DLSiteの成人男性向け音声作品シナリオを専門に制作。ジャンル・設定に合わせた台本を提供します。</p>
-          <a href="/services#scenario" class="inline-flex items-center mt-4 text-sky-500 text-sm font-medium hover:underline">
-            詳しく見る
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-
-        <div class="group p-8 rounded-2xl border border-slate-100 hover:border-sky-200 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 fade-in fade-in-delay-2">
-          <div class="w-12 h-12 bg-sky-50 group-hover:bg-sky-100 rounded-xl flex items-center justify-center mb-5 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">サークル運営補助<span class="text-sky-500 text-xs ml-1 font-normal">メイン</span></h3>
-          <p class="text-slate-500 text-sm leading-relaxed">マネジメント・タスク管理・連絡代行など、サークル運営に関わる業務を幅広くサポートします。</p>
-          <a href="/services#management" class="inline-flex items-center mt-4 text-sky-500 text-sm font-medium hover:underline">
-            詳しく見る
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-
-        <div class="group p-8 rounded-2xl border border-slate-100 hover:border-sky-200 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 fade-in fade-in-delay-3">
-          <div class="w-12 h-12 bg-sky-50 group-hover:bg-sky-100 rounded-xl flex items-center justify-center mb-5 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-2">確定申告・会計補助<span class="text-slate-400 text-xs ml-1 font-normal">オプション</span></h3>
-          <p class="text-slate-500 text-sm leading-relaxed">個人クリエイター向けに確定申告・会計ソフト操作を補助。50名以上のサポート実績があります。</p>
-          <a href="/services#tax" class="inline-flex items-center mt-4 text-sky-500 text-sm font-medium hover:underline">
-            詳しく見る
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Latest works -->
-  {latestWorks.length > 0 && (
-    <section class="py-24 bg-slate-50">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="flex items-end justify-between mb-12 fade-in">
-          <div>
-            <p class="text-sky-500 font-semibold text-sm tracking-widest uppercase mb-2">Portfolio</p>
-            <h2 class="text-3xl font-bold text-slate-900">担当作品</h2>
-          </div>
-          <a href="/portfolio" class="text-sky-500 text-sm font-medium hover:underline hidden sm:block">すべて見る →</a>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {latestWorks.map((work, i) => (
-            <a
-              href={work.data.dlsiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={`group block bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-sky-200 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 hover:-translate-y-1 fade-in fade-in-delay-${i + 1}`}
-            >
-              <div class="aspect-square overflow-hidden bg-slate-100">
-                <img
-                  src={work.data.thumbnail}
-                  alt={work.data.title}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div class="p-4">
-                <p class="text-xs text-sky-500 font-medium mb-1">{work.data.circle}</p>
-                <h3 class="text-sm font-bold text-slate-900 line-clamp-2 mb-2">{work.data.title}</h3>
-                <p class="text-xs text-slate-500 line-clamp-3">{work.data.excerpt}</p>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Latest blog -->
-  {latestPosts.length > 0 && (
-    <section class="py-24 bg-white">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="flex items-end justify-between mb-12 fade-in">
-          <div>
-            <p class="text-sky-500 font-semibold text-sm tracking-widest uppercase mb-2">Blog</p>
-            <h2 class="text-3xl font-bold text-slate-900">最新記事</h2>
-          </div>
-          <a href="/blog" class="text-sky-500 text-sm font-medium hover:underline hidden sm:block">すべて見る →</a>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {latestPosts.map((post, i) => (
-            <a
-              href={`/blog/${post.id}`}
-              class={`group block p-6 rounded-2xl border border-slate-100 hover:border-sky-200 hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 hover:-translate-y-1 fade-in fade-in-delay-${i + 1}`}
-            >
-              <span class="inline-block px-2.5 py-0.5 bg-sky-50 text-sky-600 text-xs font-medium rounded-full mb-3">{post.data.category}</span>
-              <h3 class="font-bold text-slate-900 mb-2 line-clamp-2 group-hover:text-sky-600 transition-colors">{post.data.title}</h3>
-              <p class="text-slate-500 text-sm line-clamp-2">{post.data.description}</p>
-              <p class="text-xs text-slate-400 mt-3">{post.data.pubDate.toLocaleDateString('ja-JP')}</p>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- CTA -->
-  <section class="py-24 bg-sky-500">
-    <div class="max-w-3xl mx-auto px-6 text-center fade-in">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-        まずはお気軽にご相談ください
-      </h2>
-      <p class="text-sky-100 text-lg mb-8">
-        依頼内容の確認から見積もりまで、無料でご対応します。
-      </p>
-      <a
-        href="/contact"
-        class="inline-flex items-center px-8 py-4 bg-white hover:bg-sky-50 text-sky-600 font-bold rounded-xl transition-all duration-200 hover:scale-105 shadow-xl"
-      >
-        お問い合わせ・依頼する
-      </a>
     </div>
   </section>
 

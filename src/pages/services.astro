@@ -2,141 +2,158 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Services" description="miketoneのサービス一覧 — シナリオ制作・サークル運営補助・確定申告補助">
+<Layout title="Services" description="miketoneのサービス — シナリオ制作・サークル運営補助・確定申告補助">
 
-  <div class="max-w-4xl mx-auto px-6 py-20">
-
-    <div class="text-center mb-16 fade-in">
-      <p class="text-sky-500 font-semibold text-sm tracking-widest uppercase mb-2">Services</p>
-      <h1 class="text-4xl font-bold text-slate-900 mb-4">サービス一覧</h1>
-      <p class="text-slate-500 text-lg">音声作品制作の現場に特化した、専門的なサポートを提供します。</p>
+  <!-- Hero -->
+  <section class="px-5 md:px-10 pt-12 md:pt-20 pb-16 md:pb-24">
+    <div class="flex justify-between items-center mb-12 md:mb-20 text-xs font-mono uppercase tracking-widest text-neutral-500">
+      <span>— 01 / Services</span>
+      <span>3 disciplines</span>
     </div>
+    <h1 class="font-display text-[15vw] md:text-[10vw] lg:text-[9rem] font-medium leading-[0.92] tracking-tight mb-8">
+      <span class="mask-reveal block"><span>3 つの</span></span>
+      <span class="mask-reveal block"><span><span class="font-serif-it text-sky-500">専門</span>領域。</span></span>
+    </h1>
+    <div class="md:max-w-2xl md:ml-auto reveal reveal-d2">
+      <p class="text-neutral-700 text-base md:text-lg leading-relaxed">
+        音声作品の制作現場で必要とされる業務を、3つの軸で深くカバーします。
+        シナリオの執筆、サークル運営の裏側、そしてフリーランス向けの会計まで。
+      </p>
+    </div>
+  </section>
 
-    <!-- シナリオ制作 -->
-    <section id="scenario" class="mb-16 fade-in">
-      <div class="flex items-center gap-4 mb-6">
-        <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-          </svg>
-        </div>
-        <h2 class="text-2xl font-bold text-slate-900">シナリオ制作</h2>
+  <!-- Service 01 — Scenario -->
+  <section id="scenario" class="border-t border-neutral-200 px-5 md:px-10 py-20 md:py-32">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-y-8 gap-x-6">
+      <div class="md:col-span-5 reveal">
+        <span class="big-number text-6xl md:text-9xl block leading-none mb-6 text-sky-500">01</span>
+        <h2 class="font-display text-4xl md:text-6xl font-medium leading-tight">
+          Scenario<br /><span class="font-serif-it text-neutral-500">writing</span>
+        </h2>
+        <p class="text-sm font-mono text-neutral-400 uppercase tracking-widest mt-6">— シナリオ制作</p>
       </div>
-      <div class="bg-slate-50 rounded-2xl p-8">
-        <p class="text-slate-600 leading-relaxed mb-6">
+      <div class="md:col-span-6 md:col-start-7 reveal reveal-d1">
+        <p class="text-base md:text-lg text-neutral-700 leading-relaxed mb-10">
           DLSiteに販売する成人男性向け音声作品のシナリオ（台本）を制作します。
-          ご要望のジャンル・キャラクター設定・シチュエーションに合わせ、
-          声優さんが読みやすく、リスナーに刺さる台本を作成します。
+          ご要望のジャンル・キャラクター設定・シチュエーションに合わせ、声優さんが読みやすく、
+          リスナーに刺さる台本を執筆します。
         </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <ul class="space-y-4">
           {[
-            '世界観・設定ヒアリング',
-            'プロット作成・すり合わせ',
-            '台本執筆（ト書き込み）',
-            'リテイク対応',
-            '文字数・時間目安の相談可',
-            'ジャンル幅広く対応',
-          ].map((item) => (
-            <div class="flex items-center gap-2.5 text-slate-700 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-              </svg>
-              {item}
-            </div>
+            ['Hearing', '世界観・設定の細かなヒアリング'],
+            ['Plot', 'プロット作成・段階的なすり合わせ'],
+            ['Script', '台本執筆（ト書き・指示込み）'],
+            ['Revision', 'リテイク・修正対応'],
+            ['Flexible', '文字数・時間目安の柔軟な相談可'],
+          ].map(([k, v]) => (
+            <li class="flex gap-4 border-b border-neutral-200 pb-4">
+              <span class="font-mono text-xs uppercase tracking-widest text-sky-600 w-20 shrink-0">{k}</span>
+              <span class="text-sm md:text-base">{v}</span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- サークル運営補助 -->
-    <section id="management" class="mb-16 fade-in fade-in-delay-1">
-      <div class="flex items-center gap-4 mb-2">
-        <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-          </svg>
-        </div>
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900">サークル運営補助</h2>
-          <span class="text-sky-500 text-sm font-medium">メインサービス</span>
-        </div>
-      </div>
-      <div class="bg-sky-50 border border-sky-100 rounded-2xl p-8 mt-6">
-        <p class="text-slate-600 leading-relaxed mb-6">
-          サークル主・ディレクターの業務負担を軽減する運営補助がメインサービスです。
-          マネジメント・タスク管理・関係者への連絡代行など、
-          制作の「裏方」を一手に担います。
+  <!-- Service 02 — Management (MAIN, dark) -->
+  <section id="management" class="bg-[var(--color-ink)] text-[var(--color-paper)] px-5 md:px-10 py-20 md:py-32 relative overflow-hidden">
+    <div class="grain absolute inset-0"></div>
+    <div class="relative grid grid-cols-1 md:grid-cols-12 gap-y-8 gap-x-6">
+      <div class="md:col-span-5 reveal">
+        <span class="big-number text-6xl md:text-9xl block leading-none mb-6 text-sky-400">02</span>
+        <h2 class="font-display text-4xl md:text-6xl font-medium leading-tight">
+          Management<br /><span class="font-serif-it text-neutral-500">support</span>
+        </h2>
+        <p class="text-sm font-mono text-sky-400 uppercase tracking-widest mt-6">
+          ★ Main service — サークル運営補助
         </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      </div>
+      <div class="md:col-span-6 md:col-start-7 reveal reveal-d1">
+        <p class="text-base md:text-lg text-neutral-300 leading-relaxed mb-10">
+          サークル主・ディレクターの業務負担を軽減する運営補助が、miketoneの中核です。
+          マネジメント・タスク管理・関係者への連絡代行など、制作の「裏方」を一手に担います。
+        </p>
+        <ul class="space-y-4">
           {[
-            'スタッフ・声優へのスケジュール管理',
-            'タスクの整理・進捗管理',
-            '関係者への連絡代行・調整',
-            'DLSite出品作業のサポート',
-            '制作フロー構築・改善提案',
-            '法人・サークルの連絡窓口代行',
-          ].map((item) => (
-            <div class="flex items-center gap-2.5 text-slate-700 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-              </svg>
-              {item}
-            </div>
+            ['Schedule', 'スタッフ・声優の収録スケジュール管理'],
+            ['Tasks', 'タスク整理・進捗管理'],
+            ['Comms', '関係者への連絡代行・調整'],
+            ['DLSite', '出品作業・素材整理サポート'],
+            ['Flow', '制作フロー構築・改善提案'],
+            ['Window', '法人・サークルの連絡窓口代行'],
+          ].map(([k, v]) => (
+            <li class="flex gap-4 border-b border-neutral-800 pb-4">
+              <span class="font-mono text-xs uppercase tracking-widest text-sky-400 w-20 shrink-0">{k}</span>
+              <span class="text-sm md:text-base">{v}</span>
+            </li>
           ))}
-        </div>
-        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
-          <strong>注意：</strong>法人・サークルからの依頼は連絡代行・運営補助のみ対応。会計・確定申告対応は個人の方のみとなります。
+        </ul>
+        <div class="bg-sky-950/50 border border-sky-900 rounded-2xl p-5 mt-10 text-sm text-sky-100">
+          <span class="font-mono text-xs uppercase tracking-widest text-sky-400">Notice — </span>
+          法人・サークルからの依頼は<strong>連絡代行・運営補助のみ</strong>対応。会計対応は個人の方のみとなります。
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 確定申告・会計補助 -->
-    <section id="tax" class="mb-16 fade-in fade-in-delay-2">
-      <div class="flex items-center gap-4 mb-6">
-        <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-          </svg>
-        </div>
-        <div>
-          <h2 class="text-2xl font-bold text-slate-900">確定申告・会計ソフト操作補助</h2>
-          <span class="text-slate-400 text-sm">オプションサービス</span>
-        </div>
+  <!-- Service 03 — Tax -->
+  <section id="tax" class="border-t border-neutral-200 px-5 md:px-10 py-20 md:py-32">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-y-8 gap-x-6">
+      <div class="md:col-span-5 reveal">
+        <span class="big-number text-6xl md:text-9xl block leading-none mb-6 text-neutral-300">03</span>
+        <h2 class="font-display text-4xl md:text-6xl font-medium leading-tight">
+          Tax<br /><span class="font-serif-it text-neutral-500">assistance</span>
+        </h2>
+        <p class="text-sm font-mono text-neutral-400 uppercase tracking-widest mt-6">— 確定申告・会計補助（Optional）</p>
       </div>
-      <div class="bg-slate-50 rounded-2xl p-8">
-        <p class="text-slate-600 leading-relaxed mb-6">
+      <div class="md:col-span-6 md:col-start-7 reveal reveal-d1">
+        <p class="text-base md:text-lg text-neutral-700 leading-relaxed mb-2">
           フリーランス・個人クリエイター向けに、確定申告や会計ソフトの操作補助を行います。
-          これまで50名以上の申告・ソフト設定をサポートした実績があります。<br />
-          <strong class="text-slate-700">※個人の方のみ対応。税務代理・税務代行ではありません。</strong>
+          これまで50名以上の申告・ソフト設定をサポートした実績があります。
         </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <p class="text-sm text-neutral-500 mb-10 font-serif-it">
+          ※ 個人の方のみ対応。税理士による税務代理・税務代行ではありません。
+        </p>
+        <ul class="space-y-4">
           {[
-            '確定申告の全体フロー説明',
-            '会計ソフト（freee・マネフォ等）初期設定',
-            '経費・売上の入力サポート',
-            '申告書の確認補助',
-          ].map((item) => (
-            <div class="flex items-center gap-2.5 text-slate-700 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-              </svg>
-              {item}
-            </div>
+            ['Flow', '確定申告の全体フロー説明'],
+            ['Setup', '会計ソフト（freee・マネフォ等）初期設定'],
+            ['Input', '経費・売上の入力サポート'],
+            ['Check', '申告書の確認補助'],
+          ].map(([k, v]) => (
+            <li class="flex gap-4 border-b border-neutral-200 pb-4">
+              <span class="font-mono text-xs uppercase tracking-widest text-sky-600 w-20 shrink-0">{k}</span>
+              <span class="text-sm md:text-base">{v}</span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA -->
-    <div class="text-center fade-in fade-in-delay-3">
-      <p class="text-slate-500 mb-6">料金・詳細はお問い合わせください</p>
+  <!-- CTA -->
+  <section class="px-5 md:px-10 py-24 md:py-32 bg-sky-500 text-white relative overflow-hidden">
+    <div class="grain absolute inset-0"></div>
+    <div class="relative max-w-4xl">
+      <p class="font-mono text-xs uppercase tracking-widest text-sky-100 mb-8 reveal">— Pricing & inquiry</p>
+      <h2 class="font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight mb-8 reveal reveal-d1">
+        料金・詳細は<br />
+        <span class="font-serif-it">お気軽に</span>。
+      </h2>
+      <p class="text-sky-100 text-lg mb-10 max-w-xl reveal reveal-d2">
+        ご相談・お見積もりは無料です。まずは依頼内容を聞かせてください。
+      </p>
       <a
         href="/contact"
-        class="inline-flex items-center px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg shadow-sky-500/20"
+        class="inline-flex items-center gap-3 px-8 py-4 bg-white text-[var(--color-ink)] font-medium rounded-full hover:bg-[var(--color-ink)] hover:text-white transition-colors duration-300 group reveal reveal-d3"
       >
         依頼・相談する
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
     </div>
+  </section>
 
-  </div>
 </Layout>

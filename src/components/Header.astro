@@ -1,80 +1,110 @@
 ---
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', label: 'Index', num: '00' },
+  { href: '/services', label: 'Services', num: '01' },
+  { href: '/portfolio', label: 'Portfolio', num: '02' },
+  { href: '/blog', label: 'Journal', num: '03' },
+  { href: '/contact', label: 'Contact', num: '04' },
 ];
 
 const currentPath = Astro.url.pathname;
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="font-bold text-lg tracking-tight text-slate-900">
-      mike<span class="text-sky-500">tone</span>
+<header id="site-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500">
+  <div class="px-5 md:px-10 h-16 md:h-20 flex items-center justify-between">
+    <a href="/" class="flex items-baseline gap-2 group">
+      <span class="font-display text-2xl md:text-3xl font-medium tracking-tight">miketone</span>
+      <span class="hidden md:inline text-xs text-neutral-500 font-mono">©2026</span>
     </a>
 
-    <nav class="hidden md:flex items-center gap-8">
-      {navLinks.map(({ href, label }) => (
+    <nav class="hidden md:flex items-center gap-1">
+      {navLinks.map(({ href, label, num }) => (
         <a
           href={href}
-          class={`text-sm font-medium transition-colors duration-200 ${
-            currentPath === href
-              ? 'text-sky-500'
-              : 'text-slate-600 hover:text-sky-500'
+          class={`group relative px-4 py-2 text-sm transition-colors ${
+            currentPath === href ? 'text-[var(--color-ink)]' : 'text-neutral-500 hover:text-[var(--color-ink)]'
           }`}
         >
-          {label}
+          <span class="font-mono text-[10px] mr-1.5 align-top text-neutral-400">{num}</span>
+          <span class="link-underline">{label}</span>
+          {currentPath === href && (
+            <span class="absolute left-4 right-4 -bottom-px h-px bg-[var(--color-ink)]"></span>
+          )}
         </a>
       ))}
     </nav>
 
     <a
       href="/contact"
-      class="hidden md:inline-flex items-center px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg transition-colors duration-200"
+      class="hidden md:inline-flex items-center gap-2 group px-5 py-2.5 bg-[var(--color-ink)] text-[var(--color-paper)] text-sm font-medium rounded-full hover:bg-sky-500 transition-colors duration-300"
     >
-      依頼する
+      <span>Get in touch</span>
+      <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </a>
 
-    <button id="menu-btn" class="md:hidden p-2 text-slate-600" aria-label="メニュー">
-      <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
+    <button id="menu-btn" class="md:hidden p-2 flex flex-col gap-1.5 items-end" aria-label="メニュー">
+      <span class="w-6 h-px bg-[var(--color-ink)] transition-all" id="bar1"></span>
+      <span class="w-4 h-px bg-[var(--color-ink)] transition-all" id="bar2"></span>
     </button>
   </div>
 
-  <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-slate-100 shadow-lg">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
-      {navLinks.map(({ href, label }) => (
-        <a href={href} class="text-sm font-medium text-slate-700 hover:text-sky-500 transition-colors py-1">
-          {label}
+  <div id="mobile-menu" class="md:hidden fixed inset-0 top-16 bg-[var(--color-paper)] hidden">
+    <div class="px-5 py-8 flex flex-col">
+      {navLinks.map(({ href, label, num }) => (
+        <a
+          href={href}
+          class="group flex items-baseline gap-4 py-5 border-b border-neutral-200"
+        >
+          <span class="font-mono text-xs text-neutral-400">{num}</span>
+          <span class="font-display text-3xl font-medium">{label}</span>
         </a>
       ))}
-      <a href="/contact" class="inline-flex items-center justify-center px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-lg mt-2">
-        依頼する
+      <a
+        href="/contact"
+        class="mt-8 inline-flex items-center justify-center gap-2 px-6 py-4 bg-[var(--color-ink)] text-[var(--color-paper)] text-sm font-medium rounded-full"
+      >
+        Get in touch
+        <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
     </div>
   </div>
 </header>
 
-<div class="h-16"></div>
+<div class="h-16 md:h-20"></div>
 
 <script>
   const header = document.getElementById('site-header')!;
   const menuBtn = document.getElementById('menu-btn')!;
   const mobileMenu = document.getElementById('mobile-menu')!;
+  const bar1 = document.getElementById('bar1')!;
+  const bar2 = document.getElementById('bar2')!;
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 10) {
-      header.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-slate-100');
+      header.classList.add('bg-[var(--color-paper)]/85', 'backdrop-blur-md', 'border-b', 'border-neutral-200/60');
     } else {
-      header.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-slate-100');
+      header.classList.remove('bg-[var(--color-paper)]/85', 'backdrop-blur-md', 'border-b', 'border-neutral-200/60');
     }
   });
 
   menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    if (isOpen) {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+      bar1.style.transform = '';
+      bar2.style.transform = '';
+      bar2.style.width = '1rem';
+    } else {
+      mobileMenu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      bar1.style.transform = 'translateY(3px) rotate(45deg)';
+      bar2.style.transform = 'translateY(-3px) rotate(-45deg)';
+      bar2.style.width = '1.5rem';
+    }
   });
 </script>
